@@ -20,7 +20,7 @@
             android:resource="@color/colorAccent" />
         <!-- [END fcm_default_icon] -->
 
-        <activity android:name=".Main3Activity">
+        <activity android:name=".Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

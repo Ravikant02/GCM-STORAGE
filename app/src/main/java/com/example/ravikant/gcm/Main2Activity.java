@@ -1,5 +1,6 @@
 package com.example.ravikant.gcm;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -29,19 +30,23 @@ public class Main2Activity extends AppCompatActivity {
         StorageReference islandRef = storageRef.child("Profile pic.jpg");
         final ImageView imageView = (ImageView) findViewById(R.id.image);
 
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Please wait");
+        dialog.show();
+
         /*** THIS IS TO GET IMAGE FROM STORAGE USING URI AND LOAD IT TO IMAGE VIEW ***/
-        /*islandRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        islandRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Log.e("TAG", uri.toString());
+                dialog.dismiss();
                 Picasso.with(Main2Activity.this).load(uri).into(imageView);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                dialog.dismiss();
             }
-        });*/
+        });
 
         /*** THIS IS TO LOAD IMAGE TO IMAGE VIEW DIRECTLY FROM REFERENCE ***/
        /* Glide.with(this *//* context *//*)
@@ -50,7 +55,7 @@ public class Main2Activity extends AppCompatActivity {
                 .into(imageView);*/
 
         /*** THIS IS TO DOWNLOAD IMAGE TO MEMORY ***/
-       final long ONE_MEGABYTE = 2048 * 2048;
+       /*final long ONE_MEGABYTE = 2048 * 2048;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
@@ -64,6 +69,6 @@ public class Main2Activity extends AppCompatActivity {
             public void onFailure(@NonNull Exception exception) {
                 Log.e("TAG", exception.getMessage());
             }
-        });
+        });*/
     }
 }
